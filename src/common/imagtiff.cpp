@@ -41,7 +41,7 @@ extern "C"
 #include "wx/wfstream.h"
 #include "wx/mstream.h"
 
-#if defined(__unix__)
+#if defined(__UNIX__)
 #include <sys/mman.h>
 #endif
 
@@ -251,7 +251,17 @@ static void* wxMmap(int fd, size_t size)
     void* ptr = nullptr;
 #if defined(__WINDOWS__)
     HANDLE hFile = (HANDLE)_get_osfhandle(fd);
+    if(hFile == INVALID_HANDLE_VALUE)
+    {
+        return nullptr;
+    }
+
     HANDLE hMapView = CreateFileMappingW(hFile, nullptr, PAGE_READONLY, 0, 0, nullptr);
+    if(hMapView == nullptr)
+    {
+        return nullptr;
+    }
+
     ptr = MapViewOfFile(hMapView, FILE_MAP_READ, 0, 0, size);
     CloseHandle(hMapView);
 #elif defined(__UNIX__)
