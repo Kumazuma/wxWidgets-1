@@ -842,6 +842,7 @@ wxBEGIN_EVENT_TABLE(wxAuiToolBar, wxControl)
     EVT_MOUSE_CAPTURE_LOST(wxAuiToolBar::OnCaptureLost)
     EVT_SET_CURSOR(wxAuiToolBar::OnSetCursor)
     EVT_SYS_COLOUR_CHANGED(wxAuiToolBar::OnSysColourChanged)
+    EVT_DPI_CHANGED(wxAuiToolBar::OnDpiChanged)
 wxEND_EVENT_TABLE()
 
 void wxAuiToolBar::Init()
@@ -2982,6 +2983,10 @@ void wxAuiToolBar::OnSetCursor(wxSetCursorEvent& evt)
     evt.SetCursor(cursor);
 }
 
+void wxAuiToolBar::OnDpiChanged(wxDPIChangedEvent& evt)
+{
+    //Realize();
+}
 
 #endif // wxUSE_AUI
 

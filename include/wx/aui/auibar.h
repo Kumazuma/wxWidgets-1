@@ -665,6 +665,7 @@ protected: // handlers
     void OnCaptureLost(wxMouseCaptureLostEvent& evt);
     void OnSetCursor(wxSetCursorEvent& evt);
     void OnSysColourChanged(wxSysColourChangedEvent& event);
+    void OnDpiChanged(wxDPIChangedEvent& evt);
 
 protected:
 
